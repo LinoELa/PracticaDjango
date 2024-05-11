@@ -165,6 +165,26 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
         - ls blog/ (o la carpeta que quiera ver )
 
 
+7. Para actualizar despues de haber subido el proyecto 
+
+    URL : al final de la pagina esta la informacion
+
+    https://tutorial.djangogirls.org/es/html/
+
+    - Abrir la pagina de Python Any where 
+    - Ir a la consola o empezar una nueva 
+        - - si voy a empezar una nueva puedo reactivar el enviroment con:
+            - $  workon <nombre-domonio> 
+                - workon ela098.pythonanywhere.com
+
+    - Luego ir al archivo siguiente 
+        - $ cd ~/<your-pythonanywhere-domain>.pythonanywhere.com
+        - git pull
+    - Luego ir a mi inicio y pulsar Webs, despues. 
+        - Pulsar RELOAD
+
+
+
     
 ## ------------ URLs  ---------------
 
@@ -203,6 +223,9 @@ Pedirá información del modelo que has creado antes y se la pasará a la planti
 
 ## ------------ HTML : PLANTILLAS   ---------------
 
+https://tutorial.djangogirls.org/es/html/
+
+
 Una plantilla es un archivo que podemos reutilizar para presentar información diferente de forma consistente
 
 Las plantillas se guardan en el directorio de blog/templates/blog. Así que primero crea un directorio llamado templates dentro de tu directorio blog. Luego crea otro directorio llamado blog dentro de tu directorio de templates:
@@ -240,7 +263,7 @@ blog
 
     Pero una personalizar basica 
 
-    
+
 
 
 
