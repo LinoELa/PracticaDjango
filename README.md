@@ -1,6 +1,24 @@
 # PracticaDjango
 
+##  ------------ NOTAS  ----------------
+
+1.  !Importante 
+    
+    El último parámetro, que se ve así en views.py : 
+
+    - {} es un lugar en el que podemos agregar algunas cosas para que la plantilla las use.
+        - - return render (request, 'blog/post_list.html', {})
+
+        -- Necesitamos nombrarlos (los seguiremos llamando 'posts' por ahora). Se debería ver así: {'posts': posts}. 
+            - - la parte antes de : es una cadena; tienes que envolverla con comillas: "Fíjate
+
+2. REQUEST : Todo lo que recibimos del usuario via internet 
+
+
+
+
 ##  ------------ Introduccion ----------------
+
 1. Hemos configurado el entorno virtual en Anaconda
     ==> conda create -n (nombre_del_entono) python=(Version Python)
 
@@ -165,11 +183,18 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
         - ls blog/ (o la carpeta que quiera ver )
 
 
-7. Para actualizar despues de haber subido el proyecto 
+7. Para actualizar despues de haber subido o actualizado el proyecto el GitHub
 
     URL : al final de la pagina esta la informacion
 
     https://tutorial.djangogirls.org/es/html/
+
+    A. Hacer un commit 
+        - git status 
+        - git add --all 
+        - git status 
+        - git commit - 'nombre del commit'
+        - git push 
 
     - Abrir la pagina de Python Any where 
     - Ir a la consola o empezar una nueva 
@@ -267,6 +292,9 @@ blog
 
 
 ## ------------ BBDD & QuerySet  ---------------
+
+https://tutorial.djangogirls.org/es/django_orm/
+
 Un QuerySet es, en esencia, una lista de objetos de un modelo determinado. Un QuerySet te permite leer los datos de la base de datos, filtrarlos y ordenarlos.
 
 
@@ -323,6 +351,67 @@ Un QuerySet es, en esencia, una lista de objetos de un modelo determinado. Un Qu
 7. Para salir seria 
 
     - exit()
+
+
+## ------------ DATOS DINAMICOS EN PLANTILLAS  ---------------
+
+!Importante 
+
+https://tutorial.djangogirls.org/es/dynamic_data_in_templates/
+
+Tenemos diferentes piezas en su lugar: el modelo Post está definido en models.py, tenemos a post_list en views.py y la plantilla agregada. ¿Pero cómo haremos realmente para que nuestros posts aparezcan en nuestra plantilla HTML?
+
+Esto es exactamente lo que las views se supone que hacen:
+    - Conectar modelos con plantillas.
+    - En nuestra view post_list necesitaremos tomar los modelos que deseamos mostrar y pasarlos a una plantilla.
+    - En una vista decidimos qué (modelo) se mostrará en una plantilla.
+    - Ahora tenemos que incluir el modelo que definimos en el archivo models.py. Agregaremos la línea from .models import Post 
+        - 
+
+
+
+## ------------ PLANTILLAS DE DJANGO  ---------------
+
+https://tutorial.djangogirls.org/es/django_templates/
+
+
+1. Etiquetas de plantilla 
+
+    HTML no se puede escribir código en Python porque los navegadores no lo entienden. Sólo saben HTML. Sabemos que HTML es bastante estático, mientras que Python es mucho más dinámico.
+    Las etiquetas de plantilla de Django nos permiten insertar elementos de Python dentro del HTML, para que puedas construir sitios web dinámicos más rápida y fácilmente.
+
+2. Mostrar la plantilla lista de POSTS
+    En datos dinamico dimos a nuestra plantilla una lista de entradas en la variable posts. Ahora la vamos a mostrar en HTML.
+
+
+    Para imprimir una variable en una plantilla de Django, utilizamos llaves dobles con el nombre de la variable dentro, algo así:
+
+    - blog/templates/blog/post_list.html
+            - - {{ posts }}
+
+    - HTML, para ver lo si ya funcionado y trae la informacion de la base de datos, se puede usar dentro del archivo .html
+
+        - - {% comment %} {{ posts }} {% endcomment %}
+
+    - ¿Recuerdas de Introducción a Python cómo podemos mostrar listas? Sí, ¡con bucles for! En una plantilla de Django se hacen así:
+
+         - - {% for post in posts %} {{ post }}{% endfor %}
+
+
+
+    Todo lo que pongas entre {% for %} y {% endfor %} se repetirá para cada objeto de la lista. Refresca la página:
+
+    - ({{ post.title }} o {{ post.text }})? Estamos accediendo a los datos en cada uno de los campos definidos en nuestro modelo Post. También el |linebreaksbr está pasando el texto de los post a través de un filtro para convertir saltos de línea en párrafos.
+
+
+
+
+
+
+
+
+
+
 
 
 
