@@ -106,3 +106,64 @@
 
 
 3. Luego ir a /admin y Crear , editar la informacion post o informacion de la base de datos 
+
+## ------------ Despliegar ---------------
+
+#### --- Github ---
+
+Es un capitulo que te ensena a despliegar tu pagina web en internet
+
+1. utiliar para sabe que archivos vamos a subir siempre.
+
+    - Git Status 
+    - Git Add 
+        - git add --all
+    - git commit -m " PARTE 2: A... " 
+
+#### --- Pythonanywhere ---
+
+https://tutorial.djangogirls.org/es/deploy/
+
+PythonAnywhere es un servicio para ejecutar código Python en servidores "en la nube".
+
+1. Creamos la cuenta en pythonanywhere 
+
+2. Creamos un API Token 
+
+3. Volvemos al dashboard y y creamos una nueva consola con $Bash
+
+Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu código de GitHub y configurar PythonAnywhere para que lo reconozca y lo sirva como una aplicación web. Hay
+
+<!-- 
+        NO FUNCIONA 
+
+4.  en la console de pythonanywhere lanzamos el comando 
+
+- pip3.6 install --user pythonanywhere -->
+
+5. Ejecuatamos el asistente para configuar automaticamete nuestra aplicacion desde Github
+
+    - Para crear todo a la vez : 
+
+        - $ pa_autoconfigure_django.py --python=3.6 https://github.com/"mi_nombre_de_github/repositorio".git
+
+        - En este caso : nombre de repositorio el github Clone HTTPS
+        - https://github.com/LinoELa/PracticaDjango.git
+
+        - EN ESTE CASO HE UTILIZADO : 
+
+        - $ pa_autoconfigure_django.py --python=3.6 https://github.com/LinoELa/PracticaDjango.git
+
+
+6. Creamos un superusuario 
+    - python manage.py createsuperuser
+        - ela098
+        -Python@098
+
+    - puedo ver mi codigo con la linea de comandos con :
+        - ls 
+        - ls blog/ (o la carpeta que quiera ver )
+
+
+    
+

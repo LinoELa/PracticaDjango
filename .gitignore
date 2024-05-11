@@ -2,6 +2,7 @@
 *~
 __pycache__
 myvenv
+# significa que ignore asta la base de datos 
 db.sqlite3
 /static
 .DS_Store
