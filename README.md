@@ -208,7 +208,9 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
 
     - Luego ir al archivo siguiente 
         - $ cd ~/<your-pythonanywhere-domain>.pythonanywhere.com
-        - git pull
+        - git pull (SI NO FUNCIONA )
+        -git pull git pull origin main
+
     - Luego ir a mi inicio y pulsar Webs, despues. 
         - Pulsar RELOAD
 
