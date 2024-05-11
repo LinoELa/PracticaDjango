@@ -189,14 +189,18 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
 
     https://tutorial.djangogirls.org/es/html/
 
-    A. Hacer un commit 
+    A. GitHub
+    
+    - - Hacer un commit 
         - git status 
         - git add --all 
         - git status 
-        - git commit - 'nombre del commit'
+        - git commit -m 'nombre del commit'
         - git push 
 
-    - Abrir la pagina de Python Any where 
+    B. Python Any Where
+
+    - - Abrir la pagina de Python Any where 
     - Ir a la consola o empezar una nueva 
         - - si voy a empezar una nueva puedo reactivar el enviroment con:
             - $  workon <nombre-domonio> 
