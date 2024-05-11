@@ -266,6 +266,74 @@ blog
 
 
 
+## ------------ BBDD & QuerySet  ---------------
+Un QuerySet es, en esencia, una lista de objetos de un modelo determinado. Un QuerySet te permite leer los datos de la base de datos, filtrarlos y ordenarlos.
+
+
+1. Abrimos la consola shell de VSCode 
+    -  python manage.py shell
+    - Ahora estás en la consola interactiva de Django. Es como una consola de Python normal, pero con un poco de magia de Django. :) Aquí también se pueden usar todos los comandos de Python.
+
+2. Todos los objetos 
+   - Para ver los los Post que tenemos en la base de datos hacemos 
+        - from blog.models import Post
+        - Post.objects.all()
+3. Crear Objetos 
+    - Vamos a crear nuevos objetos Post enla base de datos desde el Command Lines 
+
+        - from django.contrib.auth.models import User 
+        - me = User.objects.get(username = 'ela')
+        - Post.objects.create(autor = me , title = 'Proyecto desde Comandos ', text = 'Test')
+        - Para probar si esta bien 
+            - Post.objects.all()
+        - Publicar 
+            - post = Post.objects.get(title = 'Proyecto desde Comandos')
+            - post.publish()
+
+    - Con esto se agregar nuevas entradas post desde la linea de comandos 
+
+
+4. Filtar Objetos 
+    Una parte importante de los QuerySets es la habilidad para filtrar los resultados. Digamos que queremos encontrar todos los post del usuario ola. Usaremos filter en vez de all en Post.objects.all(). Entre paréntesis estableceremos qué condición (o condiciones) debe cumplir un post del blog para aparecer como resultado en nuestro queryset. En nuestro caso sería author es igual a me. 
+
+    - Ver todas las entradas de un usuario 
+        - - Post.objects.filter(autor = me )
+
+    - Ver las entradas que contengan la palabra 'title'
+        - - Post.objects.filter(title__contains='title')
+
+
+5. Ordenar Objetos 
+    Los QuerySets también te permiten ordenar la lista de objetos.
+
+    -Ordenar de forma normas 
+        - Post.objects.order_by('create_date')
+    - Invertir el orden
+        - Post.objects.order_by('-create_date')
+
+6. Consultas complejas y Combinacion de consultas 
+
+    Como ves, algunos métodos en Post.objects devuelven un QuerySet. Los mismos métodos pueden ser llamados también en un QuerySet, y entonces devolverán un nuevo QuerySet. También puedes combinar QuerySets encadenando uno con otro:
+
+    - fron django.utils import timezone 
+    - Post.objects.filter(published_date__lte = timezone.now()).order_by('published_date')
+
+
+
+7. Para salir seria 
+
+    - exit()
+
+
+
+
+
+
+
+
+
+
+
 
 
 
