@@ -166,4 +166,88 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
 
 
     
+## ------------ URLs  ---------------
+
+https://tutorial.djangogirls.org/es/django_urls/
+
+CUna URL es una dirección de la web. 
+Cada página en Internet necesita su propia URL. De esta manera tu aplicación sabe lo que debe mostrar a un usuario que abre una URL. 
+
+En Django utilizamos algo que se llama URLconf (configuración de URL). URLconf es un conjunto de patrones que Django intentará comparar con la URL recibida para encontrar la vista correcta.
+
+
+
+1. Configuramos urls 
+    - importando include  desde django.urls
+    - luego ponemos el path ('' , incluede () ) para la direccion principal
+
+
+2. Creamos un nuevo fichero urls.py en la carpeta blog  pero podemos crear templates primero
+
+    Dentro del nuevo fichero importamos path y los vies 
+    - from django.urls import path
+    - from . import views
+
+    - luego creamos nuestro propio url patterns y lo configuramos
+
+## ------------ VISTAS  ---------------
+
+https://tutorial.djangogirls.org/es/django_views/
+
+Una ViewS.py es un lugar donde ponemos la "lógica" de nuestra aplicación.
+
+Pedirá información del modelo que has creado antes y se la pasará a la plantilla.
+
+    - creamos nuestra primera funcion para la vista 
+
+
+## ------------ HTML : PLANTILLAS   ---------------
+
+Una plantilla es un archivo que podemos reutilizar para presentar información diferente de forma consistente
+
+Las plantillas se guardan en el directorio de blog/templates/blog. Así que primero crea un directorio llamado templates dentro de tu directorio blog. Luego crea otro directorio llamado blog dentro de tu directorio de templates:
+
+blog
+└───templates
+    └───blog
+
+1. (Tal vez te estés preguntando por qué necesitamos dos directorios llamados blog – como verás más adelante, es una convención de nombres que nos facilitará la vida cuando las cosas se pongan más complicadas.)
+
+2. Y ahora crea un archivo post_list.html (déjalo en blanco por ahora) dentro de la carpeta blog/templates/blog.
+
+    - Aunque se veea en blanco es la forma corecta 
+    - Si nada error pues reiniciar el servidor 
+
+3. Ahora podemos editar el archivo post_list.html que hemos creado
+    - poniendo la estrucuta basica de un HTML 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ola's Blog </title>
+</head>
+<body>
+
+<!-- ... -->
+    
+</body>
+</html>
+
+
+4. PERSONALIZAMOS LA PLANTILLA 
+
+    Pero una personalizar basica 
+
+    
+
+
+
+
+
+
+
+
+
 

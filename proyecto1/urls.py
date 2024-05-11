@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# usamos include  para poder leer las carpetas y decir cual sera importado
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('blog.urls')), #django redirigira la pagian pricipal a esta 
     
 ]
