@@ -41,11 +41,6 @@
      https://github.com/AlexCovizzi/vscode-sqlite/?tab=readme-ov-file
 
 
-7. Crear un superusuario para el manejo de la admin
-
-    - Nombre : ela
-    - Password : 123456789
-
 8. Creamos las carpetas con las que vamos a trabajar 
 
     - - Dentro de la carpeta Roots que es : DJ_PRACTICA
@@ -88,3 +83,26 @@
     - luego creamos las tablas con 
         - - python manage.py makemigrations blog
         -- python manage.py migrate blog  
+
+
+## ------------ Panel de Administracion ---------------
+
+1. Para agretar , editar y borrar los los post que hemos modelado, usaremos el panel de administracion (admin) de django. 
+    - En el fichero blog/admin.py tengo que registrar el modelo POST que acabamos de crear 
+
+        - from .models import Post
+
+        - admin.site.register(Post)
+
+    - Con estas 2 linas lo registramos
+
+
+2. Crear un superusuario para el manejo de la admin
+
+    - python manage.py createsuperuser
+
+    - Nombre : ela
+    - Password : 123456789
+
+
+3. Luego ir a /admin y Crear , editar la informacion post o informacion de la base de datos 

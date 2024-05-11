@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # una forma seria dirigirlo a a apps  que seria : 
-    'blog.apps.BlogConfig'
+    # 'blog.apps.BlogConfig'
     # Otra forma simple seria : 
-    # 'blog'
+    'blog'
 ]
 
 MIDDLEWARE = [
