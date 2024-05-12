@@ -198,6 +198,11 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
         - git commit -m 'nombre del commit'
         - git push 
 
+    B. Revision 
+        - Revistar si en settigs.py he puesto la url en : (en este caso : )
+            - - ALLOWED_HOSTS = ['ela098.pythonanywhere.com']
+        - Quitar la basede datos  la GitIgnore para que no ignore la base de datos.
+
     B. Python Any Where
 
     - - Abrir la pagina de Python Any where 
@@ -215,7 +220,13 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
         - Pulsar RELOAD
 
 
-
+8. Nombre y Password de la /admin
+    -  Al poner el ALLOWED_HOSTS y subirlo a produccion pues 
+    - Nombre y Password se  convierten en el mismo que yo uso en local
+        - En este caso
+            - ela
+            - 123456789
+    - ALLOWED_HOSTS = ['ela098.pythonanywhere.com']
     
 ## ------------ URLs  ---------------
 
@@ -408,6 +419,76 @@ https://tutorial.djangogirls.org/es/django_templates/
     Todo lo que pongas entre {% for %} y {% endfor %} se repetirá para cada objeto de la lista. Refresca la página:
 
     - ({{ post.title }} o {{ post.text }})? Estamos accediendo a los datos en cada uno de los campos definidos en nuestro modelo Post. También el |linebreaksbr está pasando el texto de los post a través de un filtro para convertir saltos de línea en párrafos.
+
+
+
+
+
+## ------------ CSS ---------------
+
+https://tutorial.djangogirls.org/es/css/
+
+- https://getbootstrap.com/
+
+    - Vamos a utilizar Boostrap que es un frameworks dee HTML y CSS, Lo escribieron programadores que trabajaban en Twitter. ¡Ahora lo mantienen y desarrollan voluntarios de todo el mundo.
+    - Instalar 
+        - En la Head de HTML  poner : o mirar las nuevas versiones 
+
+        - link web : https://bootstrapdocs.com/v3.3.0/docs/getting-started/
+
+        - Se llaman : CDN  
+
+            - <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+            - <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+            - <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+-  (STATIC FILES ) Archivos Estaticos 
+
+    - Los archivos estáticos son los archivos CSS e imágenes. Su contenido no depende del contexto de la petición y siempre será el mismo para todos los usuarios.
+        - Donde poner los archivos ESTATICOS en Django , Django ya sabe dónde encontrar los archivos estáticos de la app "admin" con la referencia de :  [ aunque  otra gente usa  MEDIA. ]
+            - STATIC_URL = 'static/'
+            - STATIC_ROOT = BASE_DIR / 'static'.
+        - Ahora necesitamos añadir los archivos estáticos de nuestra aplicación, blog.
+        - Crearemos una carpeta llamada static dentro de la app blog:
+
+djangogirls
+├── blog
+│   ├── migrations
+│   ├── static
+│   └── templates
+└── mysite
+
+
+- PRIMER ARCHVIO CSS
+    - Crea un nuevo directorio llamado css dentro de la carpeta static
+    - A continuación, crea un nuevo archivo llamado blog.css dentro de la carpeta css.
+    djangogirls
+        └─── blog
+             └─── static
+                  └─── css
+                       └─── blog.css
+
+    - Configurar el el blog.css : Agregar los estilos 
+        - Para decirle a nuestra plantilla HTML que hemos anadido codigo CSS tenemos que abrir el archivo blog/templates/blog/post_list.html en el editor de código y añade la siguiente linea de codigo   al principio del todo: 
+
+            - {% load static %}
+
+        - luego decirle a la plantilla donde esta nuestra carpeta CSS 
+
+            - <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    - Luego editar el css y el HTML ponerle las clases y etiquetas para que se pueda llamar en CSS y funcione.
+        
+
+        
+
+
+
+
+
+
+    
 
 
 
