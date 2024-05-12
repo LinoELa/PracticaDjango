@@ -224,6 +224,16 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
 
     - ![alt text](image.png)
 
+    D. Otra solicion para actualizar ser
+    - si cambiamos nuestros ficheros CSS, tenemos que ejecutar un comando extra en el servidor para decirle que los actualice. Este comando se llama collectstatic.
+        - activamos el vistual env  
+            - workon <your-pythonanywhere-domain>.pythonanywhere.com
+            - git pull 
+            - python manage.py collectstatic
+
+
+
+
 
 8. Nombre y Password de la /admin
     -  Al poner el ALLOWED_HOSTS y subirlo a produccion pues 
