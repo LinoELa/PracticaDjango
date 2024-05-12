@@ -489,36 +489,57 @@ djangogirls
         
 
 
+## ------------ EXTENDIENDO PLANTILLAS (Reutilizar Plantilla)  ---------------
+
+la extensión de plantillas. Significa que puedes reutilizar partes del HTML para diferentes páginas del sitio web.
+Las plantillas son útiles cuando quieres utilizar la misma información o el mismo diseño en más de un lugar. No tienes que repetirte a ti misma en cada archivo. Y
+
+- CREAR UNA PLANTILLA BASE 
+    Una plantilla base es la plantilla más básica que extiendes en cada página de tu sitio web.
+    - Vamos a crear un archivo base.html en blog/templates/blog/:
+blog
+└───templates
+    └───blog
+            base.html
+            post_list.html
+-  copia todo el contenido de post_list.html en base.html
+    - luego en base.html reemplaza por todo lo que hay en   <body> 
+    - Despues insertar en contenido por un block content
+        - {% block content %}
+        - {% endblock %}
+
+    -  ¡Acabas de crear un bloque! Hemos usado la etiqueta de plantilla {% block %} para crear un área en la que se insertará HTML. Ese HTML vendrá de otra plantilla que extiende esta (base.html).
+    - Luego editar el post_list.html quitandole la contenido structural de HTML y dejando solo el de pytho en este caso seria 
+    - Poner post_list.html dentro de un block content para decirle que es un contenido de block.
+
+    {% extends 'blog/base.html' %}
+
+    {% block content %}
+        {% for post in posts  %}
+            <div class='post'>
+                <div class="date">
+                    <p>Publicado : {{ post.published_date }}</p>
+                </div>
+                   <h2> <a href="">{{ post.title }}</a></h2>
+                <p>{{ post.text | linebreaks}}</p>
+            </div>
+            {% endfor %}
+    {% endblock %}
+
+    - ¡Esto es lo que significa extender plantillas!
+
+## ------------ EXTENDER LA APLICACION ---------------
+
+Ya hemos completado todos los diferentes pasos necesarios para la creación de nuestro sitio web
+
+Sabemos cómo escribir un modelo, URL, vista y plantilla. También sabemos cómo hacer que nuestro sitio web sea bonito.
 
 
+Vamos a crear una pagina para mostrar los  post 
+a tenemos un modelo Post, así que no necesitamos añadir nada a models.py.
 
-
+- CREAR UN ENLACE A LA PAGINA DE DETALLE DE UNA PUBLICACION
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

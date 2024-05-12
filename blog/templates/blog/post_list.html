@@ -1,61 +1,26 @@
-{% comment %} Para cagar el CSS {% endcomment %}
-{% load static %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {% comment %} Bootstrap {% endcomment %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-
-    {% comment %} decirle a la plantilla dionde estan los archivos CSS {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-
-    {% comment %} Persnalizar la tipogragia Google Font {% endcomment %}
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
 
 
-    <title> Django Blog </title>
-</head>
-
-<body>
-    {% comment %} Pra ver si ya vienen los datos {% endcomment %}
-    {% comment %} {{ posts }} {% endcomment %}
-    <div class='page-header'>
-        <h1><a href="/">Django Blog</a></h1>
-    </div>
+{% extends 'blog/base.html' %}
+{% comment %} Tiene que ser el primer tag  antes de los comentarios y todo {% endcomment %}
+{% comment %} Vamos a extender el extender la plantilla ahora {% endcomment %}
 
 
-    <div class="content container">
+{% block content %}
 
-        <div class="row">
-            <div class="col-md-8">
+{% for post in posts  %}
 
-                {% for post in posts  %}
-                <div class='post'>
+    <div class='post'>
 
-                    <div class="date">
-                        <p>Publicado : {{ post.published_date }}</p>
-                    </div>
-
-                    <h2> <a href="">{{ post.title }}</a></h2>
-
-                    <p>{{ post.text | linebreaks}}</p>
-                </div>
-                {% endfor %}
-
-            </div>
+        <div class="date">
+            <p>Publicado : {{ post.published_date }}</p>
         </div>
+
+        <h2> <a href="">{{ post.title }}</a></h2>
+
+        <p>{{ post.text | linebreaks}}</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+{% endfor %}
 
-</html>
+{% endblock %}
