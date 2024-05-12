@@ -1,6 +1,5 @@
 
 
-
 {% extends 'blog/base.html' %}
 {% comment %} Tiene que ser el primer tag  antes de los comentarios y todo {% endcomment %}
 {% comment %} Vamos a extender el extender la plantilla ahora {% endcomment %}
@@ -8,13 +7,15 @@
 
 {% block content %}
 
-{% for post in posts  %}
 
     <div class='post'>
+        {% if post.published_date %}
 
         <div class="date">
             <p>Publicado : {{ post.published_date }}</p>
         </div>
+        
+        {% endif %}
 
         {% comment %} <h2> <a href="">{{ post.title }}</a></h2> {% endcomment %}
         {% comment %} Creamos el enlace para la pagina {% endcomment %}
@@ -23,6 +24,6 @@
         <p>{{ post.text | linebreaks}}</p>
     </div>
 
-{% endfor %}
+
 
 {% endblock %}

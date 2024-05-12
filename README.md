@@ -530,6 +530,8 @@ blog
 
 ## ------------ EXTENDER LA APLICACION ---------------
 
+https://tutorial.djangogirls.org/es/extend_your_application/
+
 Ya hemos completado todos los diferentes pasos necesarios para la creación de nuestro sitio web
 
 Sabemos cómo escribir un modelo, URL, vista y plantilla. También sabemos cómo hacer que nuestro sitio web sea bonito.
@@ -539,7 +541,27 @@ Vamos a crear una pagina para mostrar los  post
 a tenemos un modelo Post, así que no necesitamos añadir nada a models.py.
 
 - CREAR UN ENLACE A LA PAGINA DE DETALLE DE UNA PUBLICACION
+Insertamos esta direccion URL desde la etiqueta a 
+    <h2> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+    - La parte depost_detail significa que Django estará esperando un URL en blog/urls.py con el nombre=post_detail
+    - pk=post.pk? pk se refiere a primary key (clave primaria),a cual es un nombre único por cada registro en una base de datos.
+    -
+    Debido a que no especificamos una llave primaria en nuestro modelo Post, Django creará una por nosotros (por defecto, un número que incrementa una unidad por cada registro, por ejemplo, 1, 2, 3) 
+
+
+- CREAR UNA URL AL DETALLE DE UNA PUBLICACION
+
+Vamos a crear una URL en urls.py para nuestra view post_detail!
+
+
+- AGREGAR LA VISTA DE DETALLE DE LA PUBLICACION
+
+
+
+
     
+
+
 
 
 
