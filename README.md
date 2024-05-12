@@ -163,14 +163,13 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
 
     - Para crear todo a la vez : 
 
-        - $ pa_autoconfigure_django.py --python=3.6 https://github.com/"mi_nombre_de_github/repositorio".git
+        - $ pa_autoconfigure_django.py --python=3.10 https://github.com/"mi_nombre_de_github/repositorio".git
 
         - En este caso : nombre de repositorio el github Clone HTTPS
         - https://github.com/LinoELa/PracticaDjango.git
 
         - EN ESTE CASO HE UTILIZADO : 
-
-        - $ pa_autoconfigure_django.py --python=3.6 https://github.com/LinoELa/PracticaDjango.git
+            - $ pa_autoconfigure_django.py --python=3.10 https://github.com/LinoELa/PracticaDjango.git
 
 
 6. Creamos un superusuario 
@@ -218,6 +217,12 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
 
     - Luego ir a mi inicio y pulsar Webs, despues. 
         - Pulsar RELOAD
+
+    C. Para que el CSS funcione tengo que agregar los path donde estan el HTML y el queesta en CSS
+        - En la imagan de abajo esta la donde agregarlo y como agregarlo 
+        - Mejor lo pongo tambien a la carpeta 
+
+    - ![alt text](image.png)
 
 
 8. Nombre y Password de la /admin
