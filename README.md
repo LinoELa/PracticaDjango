@@ -200,7 +200,7 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
     B. Revision 
         - Revistar si en settigs.py he puesto la url en : (en este caso : )
             - - ALLOWED_HOSTS = ['ela098.pythonanywhere.com']
-        - Quitar la basede datos  la GitIgnore para que no ignore la base de datos.
+        - Quitar la base de datos  la GitIgnore para que no ignore la base de datos.
 
     B. Python Any Where
 
@@ -231,6 +231,11 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
             - git pull 
             - python manage.py collectstatic
 
+    E. Para actualizar puedo borrar todos los datos que estan dentro de la carpeta que he subido  desde github en esta caso (practicaDjango)
+    
+    - Luego hago :
+    - pa_autoconfigure_django.py --python=3.10 https://github.com/LinoELa/PracticaDjango.git
+
 
 
 
@@ -242,6 +247,23 @@ Para desplegar una aplicación web en PythonAnywhere necesitas descargar tu cód
             - ela
             - 123456789
     - ALLOWED_HOSTS = ['ela098.pythonanywhere.com']
+
+
+
+9. SEGUN ELLOS UNA NUEVA DE POSTEAR SERIA 
+
+- Primero subimos los archivo a GitHub
+    - $ git status
+    - $ git add --all .
+    - $ git status
+    - $ git commit -m "EL COMIR "
+    - $ git push
+
+- Luego en la consola de Bas de PythonAnyWhere
+    - $ cd ~/<your-pythonanywhere-domain>.pythonanywhere.com
+    - $ git pull
+    - [...]
+
     
 ## ------------ URLs  ---------------
 
@@ -499,7 +521,7 @@ djangogirls
         
 
 
-## ------------ EXTENDIENDO PLANTILLAS (Reutilizar Plantilla)  ---------------
+## -- EXTENDIENDO PLANTILLAS (Reutilizar Plantilla)  ---
 
 la extensión de plantillas. Significa que puedes reutilizar partes del HTML para diferentes páginas del sitio web.
 Las plantillas son útiles cuando quieres utilizar la misma información o el mismo diseño en más de un lugar. No tienes que repetirte a ti misma en cada archivo. Y
@@ -542,6 +564,7 @@ blog
 
 https://tutorial.djangogirls.org/es/extend_your_application/
 
+
 Ya hemos completado todos los diferentes pasos necesarios para la creación de nuestro sitio web
 
 Sabemos cómo escribir un modelo, URL, vista y plantilla. También sabemos cómo hacer que nuestro sitio web sea bonito.
@@ -570,9 +593,211 @@ Vamos a crear una URL en urls.py para nuestra view post_detail!
 
 
     
+## ------------ FORMULARIOS  ---------------
+
+https://tutorial.djangogirls.org/es/django_forms/
+
+https://docs.djangoproject.com/en/2.2/topics/forms/
 
 
 
+Vamos a crear una forma agradable de agregar y editar posts en el blog.
+
+El admin de Django está bien, pero es bastante difícil de personalizar y hacerlo bonito. Con forms tendremos un poder absoluto sobre nuestra interfaz; 
+
+Lo bueno de los formularios de Django es que podemos definirlos desde cero o crear un ModelForm, el cual guardará el resultado del formulario en el modelo.
+
+Como cada parte importante de Django, los formularios tienen su propio archivo: forms.py.
+
+Necesitamos crear un archivo con este nombre en el directorio blog.
+
+blog
+   └── forms.py
+
+Lo primero, necesitamos importar Django forms (from django import forms) y nuestro modelo Post (from .models import Post).
+
+PostForm, como probablemente sospechas, es el nombre de nuestro formulario. Necesitamos decirle a Django que este formulario es un ModelForm (así Django hará algo de magia por nosotros) - forms.ModelForm es responsable de ello.
+
+Luego, tenemos class Meta, donde le decimos a Django qué modelo debe ser utilizado para crear este formulario (model = Post).
+
+Finalmente, podemos decir qué campo(s) deberían estar en nuestro formulario.
+
+from django import forms
+
+from .models import Post 
+
+
+class PostForm(forms.ModelForm):
+    
+    class Meta:
+        model = Post
+        fields = ("title","text")
+
+
+
+
+1. CREAMOS ENLACE A UNA PAGINA PARA CONECTAR CON EL FORMULARIO
+
+    Ahora toca abrir el fichero blog/templates/blog/base.html en el editor.
+
+<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+    Ten en cuenta que queremos llamar a nuestra nueva vista post_new. La clase "glyphicon glyphicon-plus" es proporcionada por el tema de bootstrap que estamos utilizando, y nos mostrará un signo de suma.
+
+
+2. VISTA Post_new
+
+    en blog/views.py agregar 
+    - Desde fichero forms.py que hemos creado importados la funcion PostForm
+    - from .forms import PostForm 
+
+
+    - Creamos la funcion de la vista para Post_new 
+
+3. CREAMOS LA PLANTILLA QUE HEMOS LLAMADO LA FUNCIO : PostForm()
+
+    Tenemos que crear un fichero post_edit.html el el directorio blog/templates/blog
+
+    Para hacer que un formulario funcione necesitamos varias cosas:
+
+    - Tenemos que mostrar el formulario. Podemos hacerlo, por ejemplo, con un sencillo {{ form.as_p }}.
+    - La línea anterior tiene que estar dentro de una etiqueta de formuLario HTML: <form method="POST">...</form>.
+    - Necesitamos un botón Guardar. Lo hacemos con un botón HTML:
+        - - <button type='submit'>Save</button>.
+    - Finalmente justo después de abrir la etiqueta <form ...> tenemos que añadir 
+        - - {% csrf_token %} {{form.as_p}}. 
+        - ¡Esto es muy importante ya que hace que tus formularios sean seguros! Si olvidas este pedazo, Django se molestará cuando intentes guardar el formulario:
+
+
+- GUARDAR FORMULARIO
+
+    Para hacer que un formulario pueda mandar informacion tenemos que hacer.
+    Cuando enviamos el formulario somos redirigidos a la misma vista, pero esta vez tenemos algunos datos adicionales en request, más específicamente en request.POST (el nombre no tiene nada que ver con un post del blog, se refiere a que estamos "publicando" -en inglés, posting- datos). ¿Recuerdas que en el archivo HTML la definición de <form> tenía la variable method="POST"? Todos los campos del formulario estan ahora en request.POST. No deberías renombrar la variable POST (el único nombre que también es válido para la variable method es GET, pero no tenemos tiempo para explicar cuál es la diferencia).
+
+    En nuestra vista tenemos dos situaciones distintas que manejar: primero, cuando accedemos a la página por primera vez y queremos un formulario vacío, y segundo, cuando regresamos a la vista con los datos del formulario que acabamos de ingresar. Así que tenemos que añadir una condición (utilizaremos if para eso):
+
+    En blog/views.py
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        [...]
+    else:
+        form = PostForm()
+
+
+    -- REVISAR BIENE ESTA PARTE
+def post_new(request):
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        # verificar si todos los campos estan bien. Comprobamos que el formulario es valido
+        if form.is_valid():
+            post = form.save(commit =False)
+            post.autor = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect ('post_detail' , pk=post.pk)
+    else:
+        form = PostForm()
+
+    return render (request, 'blog/post_edit.html', {'form': form })
+
+
+
+
+
+- VALIDACION DE FORMULARIOS 
+
+    Un post del blog debe tener los campos title y text. En nuestro modelo Post no dijimos (a diferencia de published_date) que estos campos no son requeridos, así que Django, por defecto, espera que estén definidos.
+
+    - No podemos subir informacion al blog sin tener completar los camposo requeridos.
+
+    Django se encarga de validad los datos si estan puesto o no antes de subirlos. 
+
+
+- EDITAR FORMULARIO
+
+    Ahora sabemos cómo agregar un nuevo formulario. Pero, ¿qué pasa si queremos editar uno existente? 
+
+    1. Abre blog/templates/blog/post_detail.html en el editor de código y añade la línea despues del {% endif %}
+
+<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+    2. Abre blog/urls.py en el editor y añade esta línea:
+
+path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
+
+    3. Vamos a reusar la plantilla blog/templates/blog/post_edit.html, así que lo último que nos falta es una view.
+        - Abre blog/views.py en el editor de código y añade esto al final del todo:
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+    [...]
+
+
+
+
+
+- SEGURIDAD & AUTENTIFICARCION PARA PUBLICAR
+
+    ¡Poder crear nuevas publicaciones haciendo click en un enlace es genial! Pero, ahora mismo, cualquiera que visite tu página podría publicar un nuevo post y seguro que eso no es lo que quieres. Vamos a hacer que el botón sea visible para ti pero no para nadie más.
+
+    Abre blog/templates/blog/base.html en el editor, busca el div page-header y la etiqueta del enlace (anchor) que pusimos antes. Debería ser algo así:
+
+    blog/templates/blog/base.html
+<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+    Vamos a añadir otra etiqueta {% if %} que hará que el enlace sólo parezca para los usuarios que hayan iniciado sesión en el admin.
+
+
+
+
+    Tenemos que agregar una condicion que solo permita que los usuarios que han iniciado sesion puedan publicar 
+
+{% if user.is_authenticated %}
+
+<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+{% if user.is_authenticated %}
+
+
+
+    Tambien tenemos que agregar eso en button que esta en blog/templates/blog/post_detail.html. 
+
+{%if user.is_authenticated %}
+
+<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+{% endif %}
+
+
+
+- PRUEBA DE AUTENTIFICACION 
+
+Dado que es probable que estés conectado, si actualizas la página, no verás nada diferente. Carga la página en un navegador diferente o en una ventana en modo incógnito ("privado" en Windows Edge) y verás que el link no aparece, y el icono tampoco!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## ------------ MANEJO DE ERRORES  ---------------
+
+1. NoReverseMatch at / : AUN NO HEMOS PASADO LA URL AL PATH 
+    - path('post/new', views.post_new, name='post_new'),
+        - En este caso al path de blog/urls.py
+
+2. AttributeError: module 'blog.views' has no attribute 'post_new'
+    - no hemos creado en blog/views la funcion para vista de post_new
 
 
 

@@ -16,10 +16,19 @@
         </div>
         
         {% endif %}
+        
+        {% comment %} Editar formulario {% endcomment %}
+        {% comment %} autentificaciones  {% endcomment %}
+        {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
 
         {% comment %} <h2> <a href="">{{ post.title }}</a></h2> {% endcomment %}
         {% comment %} Creamos el enlace para la pagina {% endcomment %}
-            <h2> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+
+        {% comment %} <h2> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2> {% endcomment %}
+
+        <h2> {{ post.title }}</h2>
 
         <p>{{ post.text | linebreaks}}</p>
     </div>
